@@ -16,3 +16,5 @@ rootProject.name = "Just Another Recipes"
 include ':app'
 include ':modules:ui_categories'
 include ':modules:datasource_categories'
+include ':modules:di_module'
+include ':modules:resource_module'

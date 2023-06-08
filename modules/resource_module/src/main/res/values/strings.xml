@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Just Another Recipes</string>
+    <string name="navigation_home">Home</string>
+    <string name="navigation_bucket">Cart</string>
+    <string name="navigation_search">Search</string>
+    <string name="navigation_account">Account</string>
+</resources>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Just Another Recipes</string>
+    <string name="navigation_home">Главная</string>
+    <string name="navigation_bucket">Корзина</string>
+    <string name="navigation_search">Поиск</string>
+    <string name="navigation_account">Аккаунт</string>
+</resources>
