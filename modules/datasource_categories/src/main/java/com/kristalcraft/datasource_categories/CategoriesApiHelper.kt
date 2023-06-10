@@ -4,6 +4,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface CategoriesApiHelper {
 
-    fun getCategories(): Flow<ArrayList<CategoryModel>>
+    suspend fun getCategories(): Flow<List<CategoryModel>>
 
 }

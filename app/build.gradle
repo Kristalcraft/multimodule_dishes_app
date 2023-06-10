@@ -38,7 +38,9 @@ android {
 
 dependencies {
     implementation project(path: ':modules:ui_categories')
+    implementation project(path: ':modules:ui_dishes')
     implementation project(path: ':modules:resource_module')
+    implementation project(path: ':modules:di_module')
 
     implementation 'androidx.core:core-ktx:1.10.1'
     implementation 'androidx.appcompat:appcompat:1.6.1'

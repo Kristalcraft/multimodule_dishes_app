@@ -7,8 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.navigation.NavigationBarView
 import com.kristalcraft.justanotherrecipes.databinding.ActivityMainBinding
 import com.kristalcraft.ui_categories.CategoriesFragment
+import com.kristalcraft.ui_categories.CategoryClicked
+import com.kristalcraft.ui_dishes.DishesFragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), CategoryClicked {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -24,6 +26,10 @@ class MainActivity : AppCompatActivity() {
         openCategories(savedInstanceState)
     }
 
+    override fun onBackPressed() {
+        openCategories(null)
+    }
+
     @SuppressLint("CommitTransaction")
     private fun openCategories(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
@@ -33,14 +39,27 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("CommitTransaction")
+    private fun openDishes(savedInstanceState: Bundle?, name: String) {
+        if (savedInstanceState == null) {
+            val fragment = DishesFragment()
+            val bundle = Bundle()
+            bundle.putString(DishesFragment.CATEGORY_NAME, name)
+            fragment.arguments = bundle
+            supportFragmentManager.beginTransaction()
+                .replace(binding.fragmentContainer.id, fragment, DISHES)
+                .commit()
+        }
+    }
+
     private fun setNavigation(savedInstanceState: Bundle?) {
         val listener =
             NavigationBarView.OnItemSelectedListener { item ->
                 when (item.itemId) {
                     R.id.main -> {openCategories(savedInstanceState)}
-                    R.id.account -> {                  }
-                    R.id.search -> {                  }
-                    R.id.search -> {                  }
+                    R.id.account -> { }
+                    R.id.search -> { }
+                    R.id.bucket -> { }
                 }
                 true
             }
@@ -50,6 +69,11 @@ class MainActivity : AppCompatActivity() {
 
     companion object{
         const val CATEGORIES = "categories"
+        const val DISHES = "dishes"
+    }
+
+    override fun onCategoryClicked(name: String) {
+        openDishes(null, name)
     }
 
 }

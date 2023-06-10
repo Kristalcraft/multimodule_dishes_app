@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="14dp"
+    android:layout_marginStart="4dp"
+    android:layout_marginEnd="4dp"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="109dp"
+        android:layout_gravity="bottom|end"
+        app:cardCornerRadius="10dp"
+        app:cardBackgroundColor="@color/figma_card_background"
+        android:elevation="0dp"
+        app:cardElevation="0dp">
+
+    <ImageView
+        android:id="@+id/dish_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerInside"
+        android:layout_gravity="center"
+        tools:background="@color/figma_black_transparent"
+        tools:src="@drawable/ham_rolls_with_fired_potatoes"
+    />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/dish_name"
+        style="@style/sf_pro_dish_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:maxLines="3"
+        android:inputType="textMultiLine"
+        tools:text ="Пекарни и кондитерские"
+        />
+
+</LinearLayout>

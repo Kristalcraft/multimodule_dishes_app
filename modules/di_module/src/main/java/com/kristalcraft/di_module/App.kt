@@ -1,13 +1,10 @@
 package com.kristalcraft.di_module
 
 import android.app.Application
-/*
-import com.kristalcraft.justanotherrecipes.di.AppComponent
-import com.kristalcraft.justanotherrecipes.di.DaggerAppComponent
-import com.kristalcraft.ui_categories.di.CategoriesComponent
-import com.kristalcraft.ui_categories.di.CategoriesComponentProvider
+import com.kristalcraft.di_module.di.AppComponent
+import com.kristalcraft.di_module.di.DaggerAppComponent
 
-class App: Application(), CategoriesComponentProvider {
+open class BaseApp: Application(){
 
     lateinit var appComponent: AppComponent
 
@@ -18,13 +15,8 @@ class App: Application(), CategoriesComponentProvider {
             .builder()
             .applicationContext(applicationContext)
             .build()
-        appComponent.inject(this)
+        //appComponent.inject(this)
 
     }
 
-    override fun provide(): CategoriesComponent {
-        return appComponent.categoriesComponent().create()
-
-    }
-
-}*/
+}

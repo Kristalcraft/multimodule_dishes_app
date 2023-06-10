@@ -10,4 +10,5 @@
     <color name="figma_blue">#3364E0</color>
     <color name="figma_grey">#A5A9B2</color>
     <color name="figma_black_transparent">#80000000</color>
+    <color name="figma_card_background">#F8F7F5</color>
 </resources>
