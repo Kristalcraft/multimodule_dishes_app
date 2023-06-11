@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.kristalcraft.datasource_dishes.TagModel
-import com.kristalcraft.dishes_datasourse.DishModel
+import com.kristalcraft.datasource_dishes.DishModel
 import com.kristalcraft.dishes_datasourse.DishesApiHelper
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn

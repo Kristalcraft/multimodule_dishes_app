@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/figma_transparent_background"
+    android:clickable="true"
+    android:focusable="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/popup_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/rounded_rectangle"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        >
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/image_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="@id/popup_container"
+        app:layout_constraintEnd_toEndOf="@id/popup_container"
+        app:layout_constraintTop_toTopOf="@id/popup_container"
+
+        app:layout_constraintDimensionRatio="h,4:3"
+        android:elevation="0dp"
+        app:cardElevation="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        tools:background="@color/figma_black_transparent"
+        app:cardCornerRadius="15dp">
+        <ImageView
+            android:id="@+id/dish_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:layout_gravity="center"
+            app:layout_constraintDimensionRatio="h,4:3"
+            tools:src="@drawable/ham_rolls_with_fired_potatoes"
+            android:background="@color/figma_card_background"
+            />
+    </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/dish_name"
+            style="@style/sf_pro_details_dish_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:maxLines="3"
+            android:inputType="textMultiLine"
+            app:layout_constraintStart_toStartOf="@id/image_container"
+            app:layout_constraintTop_toBottomOf="@id/image_container"
+            app:layout_constraintEnd_toEndOf="@id/image_container"
+            tools:text ="Рыба с овощами и рисом"
+            />
+        <TextView
+            android:id="@+id/dish_price"
+            style="@style/sf_pro_details_dish_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@id/image_container"
+            app:layout_constraintTop_toBottomOf="@id/dish_name"
+            tools:text ="799 ₽"
+            />
+        <TextView
+            android:id="@+id/dish_weight"
+            style="@style/sf_pro_details_dish_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/dish_price"
+            app:layout_constraintTop_toTopOf="@id/dish_price"
+            android:inputType="textMultiLine"
+            tools:text =" · 560г"
+            />
+        <TextView
+            android:id="@+id/dish_description"
+            style="@style/sf_pro_display_subhead_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@id/dish_price"
+            app:layout_constraintTop_toBottomOf="@id/dish_price"
+            app:layout_constraintEnd_toEndOf="@id/image_container"
+            android:inputType="textMultiLine"
+            tools:text ="Рыба маринованная со специями, лимонным соком, соевым соусом и запечeнная в духовке с лучком, томатами и картошечкой под золотистой майонезно-сырной шубкой"
+            />
+
+        <ImageView
+            android:id="@+id/details_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/image_container"
+            app:layout_constraintTop_toTopOf="@+id/image_container"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/figma_cross"/>
+
+        <ImageView
+            android:id="@+id/details_like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@+id/details_close"
+            app:layout_constraintTop_toTopOf="@+id/image_container"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/figma_like"/>
+
+        <TextView
+            android:id="@+id/details_add"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            app:layout_constraintStart_toStartOf="@+id/dish_description"
+            app:layout_constraintTop_toBottomOf="@+id/dish_description"
+            app:layout_constraintEnd_toEndOf="@id/dish_description"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="@string/add_to_cart"
+            style="@style/sf_pro_headline_3"
+            android:background="@drawable/blue_button"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/details_add"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="@id/image_container"
+            app:layout_constraintStart_toStartOf="@+id/image_container" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

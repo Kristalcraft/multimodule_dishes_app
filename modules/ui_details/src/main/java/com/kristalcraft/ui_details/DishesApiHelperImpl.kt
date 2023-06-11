@@ -1,4 +1,4 @@
-package com.kristalcraft.ui_dishes
+package com.kristalcraft.ui_details
 
 import com.kristalcraft.datasource_dishes.DishModel
 import com.kristalcraft.dishes_datasourse.DishesApi
@@ -21,8 +21,13 @@ class DishesApiHelperImpl @Inject constructor(val apiService: DishesApi):
 
     }
 
-    override suspend fun getDish(id: Int): Flow<DishModel> {
-        TODO("Not yet implemented")
+    override suspend fun getDish(id: Int): Flow<DishModel> = flow {
+        apiService.getDishes().dishes.forEach {
+            if (it.id == id) {
+                emit(it)
+            }
+        }
+
     }
 
 

@@ -1,4 +1,4 @@
-package com.kristalcraft.dishes_datasourse
+package com.kristalcraft.datasource_dishes
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
@@ -13,10 +13,10 @@ data class DishModel(
     val name: String,
     @Expose
     @SerializedName("price")
-    val price: Float,
+    val price: Int,
     @Expose
     @SerializedName("weight")
-    val weight: Float,
+    val weight: Int,
     @Expose
     @SerializedName("description")
     val description: String,

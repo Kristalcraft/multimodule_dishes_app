@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kristalcraft.delegate_adapter.MainCompositeAdapter
 import com.kristalcraft.di_module.BaseApp
@@ -14,7 +13,6 @@ import com.kristalcraft.ui_categories.databinding.FragmentCategoriesBinding
 import com.kristalcraft.ui_categories.di.CategoriesComponent
 import com.kristalcraft.ui_categories.di.DaggerCategoriesComponent
 import com.kristalcraft.ui_categories.recyclerview.CategoriesAdapterDelegate
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class CategoriesFragment : Fragment() {
@@ -51,7 +49,7 @@ class CategoriesFragment : Fragment() {
             when (it) {
                 is State.DataState -> adapter.submitList(it.data)
                 is State.ErrorState -> {Toast.makeText(context, it.exception.message, Toast.LENGTH_SHORT).show()}
-                is State.LoadingState -> {Toast.makeText(context, "Loading...", Toast.LENGTH_SHORT).show()}
+                is State.LoadingState -> {Toast.makeText(context, "Загрузка...", Toast.LENGTH_SHORT).show()}
             }
         }
     }

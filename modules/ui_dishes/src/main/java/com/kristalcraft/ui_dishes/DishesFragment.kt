@@ -64,7 +64,7 @@ class DishesFragment : Fragment() {
                 is State.ErrorState -> {
                     Toast.makeText(context, it.exception.message, Toast.LENGTH_SHORT).show()}
                 is State.LoadingState -> {
-                    Toast.makeText(context, "Loading...", Toast.LENGTH_SHORT).show()}
+                    Toast.makeText(context, "Загрузка...", Toast.LENGTH_SHORT).show()}
             }
         }
 
@@ -107,13 +107,19 @@ class DishesFragment : Fragment() {
 
     }
 
-    private val onDishClick = { id: Int ->
-
+    private val onDishClick = { dishId: Int ->
+        if (activity is DishClicked) {
+            (activity as DishClicked).onDishClicked(dishId)
+        }
     }
 
     companion object{
         const val CATEGORY_NAME = "category_name"
     }
+}
+
+interface DishClicked {
+    fun onDishClicked(dishId: Int)
 }
 
 
