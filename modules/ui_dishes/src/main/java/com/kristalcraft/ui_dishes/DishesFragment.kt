@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.kristalcraft.delegate_adapter.DelegateAdapterItem
+import com.kristalcraft.datasource_dishes.TagModel
 import com.kristalcraft.delegate_adapter.MainCompositeAdapter
 import com.kristalcraft.di_module.BaseApp
 import com.kristalcraft.ui_categories.di.DaggerDishesComponent
@@ -29,13 +29,13 @@ class DishesFragment : Fragment() {
 
     private val dishesAdapter by lazy {
         MainCompositeAdapter.Builder()
-            .add(DishesAdapterDelegate())
+            .add(DishesAdapterDelegate(onDishClick))
             .build()
     }
 
     private val tagsAdapter by lazy {
         MainCompositeAdapter.Builder()
-            .add(TagsAdapterDelegate())
+            .add(TagsAdapterDelegate(onTagClick))
             .build()
     }
 
@@ -70,9 +70,19 @@ class DishesFragment : Fragment() {
 
         binding.tagsRecycler.layoutManager =
             LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false)
+        binding.tagsRecycler.adapter = tagsAdapter
 
         viewModel.tags.observe(viewLifecycleOwner){
-            tagsAdapter.submitList(it.toList())
+            val list = ArrayList<TagModel>()
+            it.forEach {thisTag->
+                list.add(
+                    TagModel(
+                        thisTag.name,
+                        thisTag.selected
+                    )
+                )
+            }
+            tagsAdapter.submitList(list.toList())
         }
     }
 
@@ -89,6 +99,16 @@ class DishesFragment : Fragment() {
             .appComponent(appComponent)
             .build()
         dishesComponent.inject(this)
+    }
+
+    private val onTagClick = { name: String ->
+            viewModel.getDishes(name)
+            viewModel.selectTag(name)
+
+    }
+
+    private val onDishClick = { id: Int ->
+
     }
 
     companion object{

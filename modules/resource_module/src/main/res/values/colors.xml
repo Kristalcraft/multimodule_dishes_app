@@ -11,4 +11,5 @@
     <color name="figma_grey">#A5A9B2</color>
     <color name="figma_black_transparent">#80000000</color>
     <color name="figma_card_background">#F8F7F5</color>
+    <color name="figma_transparent_background">#66000000</color>
 </resources>

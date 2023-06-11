@@ -8,6 +8,7 @@
     android:elevation="0dp"
     app:cardCornerRadius="10dp"
     android:layout_marginStart="8dp"
+    app:cardBackgroundColor="@color/figma_card_background"
     android:id="@+id/tag_cardview">
 
     <TextView

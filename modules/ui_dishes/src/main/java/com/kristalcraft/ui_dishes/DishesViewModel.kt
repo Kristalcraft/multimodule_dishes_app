@@ -9,12 +9,9 @@ import com.kristalcraft.datasource_dishes.TagModel
 import com.kristalcraft.dishes_datasourse.DishModel
 import com.kristalcraft.dishes_datasourse.DishesApiHelper
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.flatMap
 import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.transform
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -25,39 +22,63 @@ class DishesViewModel @Inject constructor (private val categoriesApiHelper: Dish
     val dishData : LiveData<State<List<DishModel>>> = _dishData
     private val _tags = MutableLiveData<ArrayList<TagModel>>()
     val tags : LiveData<ArrayList<TagModel>> = _tags
-    private val stringTags = ArrayList<String>()
+    private val collectedTags = ArrayList<String>()
+    private var firstResponse = true
 
     init{
-        viewModelScope.launch {
-            getDishes("Все меню")
-        }
-
+        getDishes(ALL)
+        selectTag(ALL)
     }
 
-    suspend fun getDishes(tag: String) {
-        val tags = ArrayList<String>()
+    fun getDishes(tag: String) {
         _dishData.value = State.LoadingState
-        categoriesApiHelper.getDishes(tag)
-            .onEach {
-                _dishData.value = State.DataState(it)
-                it.forEach { dish ->
-                    dish.tags.forEach {dishTag ->
-                            if (!tags.contains(dishTag)){
-                                tags.add(dishTag)
-                            }
+        viewModelScope.launch {
+            categoriesApiHelper.getDishes(tag)
+                .onEach {
+                    if (firstResponse ) {
+                        collectTags(it)
+                        firstResponse = false
                     }
+                    _dishData.value = State.DataState(it)
+                }
+                .catch {
+                    it.printStackTrace()
+                    _dishData.value = State.ErrorState(it)
+                }
+                .onCompletion { selectTag(tag) }
+                .launchIn(viewModelScope)
+        }
+    }
+
+
+    private fun collectTags(dishes: List<DishModel>){
+        dishes.forEach{
+            it.tags.forEach {dishTag ->
+                if (!collectedTags.contains(dishTag)){
+                    collectedTags.add(dishTag)
                 }
             }
-            .catch { it.printStackTrace()
-                _dishData.value = State.ErrorState(it) }
-            .launchIn(viewModelScope)
+        }
+        val tagModels = ArrayList<TagModel>()
+        collectedTags.forEach {
+            tagModels.add(TagModel(it))
+        }
 
-
+        _tags.value = tagModels
     }
 
+    fun selectTag(name: String){
+        val tagModels = tags.value
+        tagModels?.forEach {
+            it.selected = it.name == name
+        }
+        tagModels?.let{
+            _tags.value = it
+        }
+    }
 
-    private fun collectTags(tags: List<DishModel>){
-
+    companion object{
+        const val ALL = "Все меню"
     }
 }
 
