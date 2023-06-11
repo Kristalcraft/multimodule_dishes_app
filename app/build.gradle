@@ -42,6 +42,7 @@ dependencies {
     implementation project(path: ':modules:ui_details')
     implementation project(path: ':modules:resource_module')
     implementation project(path: ':modules:di_module')
+    implementation project(path: ':modules:ui_cart')
 
     implementation 'androidx.core:core-ktx:1.10.1'
     implementation 'androidx.appcompat:appcompat:1.6.1'

@@ -81,11 +81,18 @@ class DetailsFragment: Fragment() {
         detailsComponent.inject(this)
     }
 
-
-    companion object{
-
-        const val DISH_ID = "dish_id"
-
+    private val categoryListener = { name: String ->
+        if (activity is CartClicked) {
+            (activity as CartClicked).onAddClicked(name)
+        }
     }
 
+    companion object{
+        const val DISH_ID = "dish_id"
+    }
+
+}
+
+interface CartClicked {
+    fun onAddClicked(name: String)
 }
