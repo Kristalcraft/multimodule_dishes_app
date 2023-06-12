@@ -1,4 +1,4 @@
-package com.kristalcraft.ui_details
+package com.kristalcraft.ui_cart
 
 import com.kristalcraft.datasource_dishes.DishModel
 import com.kristalcraft.dishes_datasourse.DishesApi
@@ -10,7 +10,7 @@ import javax.inject.Inject
 class DishesApiHelperImpl @Inject constructor(val apiService: DishesApi):
     DishesApiHelper {
 
-    override  fun getDishes(tag: String): Flow<List<DishModel>> = flow {
+    override fun getDishes(tag: String): Flow<List<DishModel>> = flow {
         val prefferedDishes = arrayListOf<DishModel>()
         apiService.getDishes().dishes.forEach {
             if (it.tags.contains(tag)){

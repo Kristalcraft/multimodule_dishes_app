@@ -56,7 +56,7 @@
         app:layout_constraintTop_toTopOf="@id/top_box"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/dishes_recycler"
+        android:id="@+id/cart_recycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:paddingStart="12dp"
@@ -70,7 +70,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/top_box" />
 
-    <Button
+    <TextView
         style="@style/sf_pro_medium_headline_3.white"
         android:layout_width="0dp"
         android:layout_height="48dp"
@@ -78,9 +78,10 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:textAllCaps="false"
+        android:gravity="center"
         tools:text="Оплатить 2 004 ₽"
         android:background="@drawable/blue_button"
-        app:layout_constraintBottom_toBottomOf="@+id/dishes_recycler"
+        app:layout_constraintBottom_toBottomOf="@+id/cart_recycler"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

@@ -9,7 +9,8 @@ import com.kristalcraft.delegate_adapter.DelegateAdapter
 import com.kristalcraft.delegate_adapter.DelegateAdapterItem
 
 
-class CartDishAdapterDelegate(val onCounterClickListener: (id: Int,difference:Int) -> Unit) : DelegateAdapter<CartDishModel, CartDishAdapterDelegate.CategoryViewHolder>(CartDishModel::class.java) {
+class CartDishAdapterDelegate(val onCounterClickListener: (id: Int,difference:Int) -> Unit) : DelegateAdapter<com.kristalcraft.datasource_cart.CartModel, CartDishAdapterDelegate.CategoryViewHolder>(
+    com.kristalcraft.datasource_cart.CartModel::class.java) {
 
     override fun createViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
         val binding = CartDishViewholderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -17,7 +18,7 @@ class CartDishAdapterDelegate(val onCounterClickListener: (id: Int,difference:In
     }
 
     override fun bindViewHolder(
-        model: CartDishModel,
+        model: com.kristalcraft.datasource_cart.CartModel,
         viewHolder: CategoryViewHolder,
         payloads: List<DelegateAdapterItem.Payloadable>
     ) {
@@ -25,16 +26,17 @@ class CartDishAdapterDelegate(val onCounterClickListener: (id: Int,difference:In
     }
 
     inner class CategoryViewHolder(private val binding: CartDishViewholderBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: CartDishModel) {
-            binding.dishImage.load(item.dishModel.image_url)
-            binding.dishName.text = item.dishModel.name
-
-            binding.dishPrice.text = "${item.dishModel.price} ₽ · ${item.dishModel.weight}г"
+        fun bind(item: com.kristalcraft.datasource_cart.CartModel) {
+            binding.dishImage.load(item.image_url)
+            binding.dishName.text = item.name
+            binding.counterCount.text = item.count.toString()
+            binding.dishPrice.text = "${item.price} ₽"
+            binding.dishWeight.text = " · ${item.weight}г"
             binding.counterMinus.setOnClickListener {
-                onCounterClickListener.invoke(item.dishModel.id,-1)
+                onCounterClickListener.invoke(item.id,-1)
             }
             binding.counterPlus.setOnClickListener {
-                onCounterClickListener.invoke(item.dishModel.id,1)
+                onCounterClickListener.invoke(item.id,1)
             }
         }
     }

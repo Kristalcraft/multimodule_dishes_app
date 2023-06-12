@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Singleton
 
-class DishesViewModel @Inject constructor (private val categoriesApiHelper: DishesApiHelper) : ViewModel() {
+class DishesViewModel @Inject constructor (private val dishesApiHelper: DishesApiHelper) : ViewModel() {
 
     private val _dishData = MutableLiveData<State<List<DishModel>>>()
     val dishData : LiveData<State<List<DishModel>>> = _dishData
@@ -33,7 +33,7 @@ class DishesViewModel @Inject constructor (private val categoriesApiHelper: Dish
     fun getDishes(tag: String) {
         _dishData.value = State.LoadingState
         viewModelScope.launch {
-            categoriesApiHelper.getDishes(tag)
+            dishesApiHelper.getDishes(tag)
                 .onEach {
                     if (firstResponse ) {
                         collectTags(it)

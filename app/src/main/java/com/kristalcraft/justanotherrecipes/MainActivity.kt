@@ -6,6 +6,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.navigation.NavigationBarView
 import com.kristalcraft.justanotherrecipes.databinding.ActivityMainBinding
+import com.kristalcraft.ui_cart.CartFragment
 import com.kristalcraft.ui_categories.CategoriesFragment
 import com.kristalcraft.ui_categories.CategoryClicked
 import com.kristalcraft.ui_details.DetailsFragment
@@ -57,18 +58,20 @@ class MainActivity : AppCompatActivity(), CategoryClicked, DishClicked {
 
     @SuppressLint("CommitTransaction")
     private fun openDetails(id: Int){
-        /*supportFragmentManager.beginTransaction()
-            .find
-            .replace(binding.fullFragmentContainer.id, fragment, DETAILS)
-            .addToBackStack(DETAILS)
-            .commit()*/
-
         val fragment = DetailsFragment()
         val bundle = Bundle()
         bundle.putInt(DetailsFragment.DISH_ID, id)
         fragment.arguments = bundle
         supportFragmentManager.beginTransaction()
             .replace(binding.fullFragmentContainer.id, fragment, DETAILS)
+            .addToBackStack(DETAILS)
+            .commit()
+    }
+
+    @SuppressLint("CommitTransaction")
+    private fun openCart(){
+        supportFragmentManager.beginTransaction()
+            .replace(binding.fragmentContainer.id, CartFragment(), CART)
             .addToBackStack(DETAILS)
             .commit()
     }
@@ -80,7 +83,7 @@ class MainActivity : AppCompatActivity(), CategoryClicked, DishClicked {
                     R.id.main -> {openCategories()}
                     R.id.account -> { }
                     R.id.search -> { }
-                    R.id.bucket -> { }
+                    R.id.bucket -> {openCart() }
                 }
                 true
             }
@@ -92,6 +95,7 @@ class MainActivity : AppCompatActivity(), CategoryClicked, DishClicked {
         const val CATEGORIES = "categories"
         const val DISHES = "dishes"
         const val DETAILS = "details"
+        const val CART = "cart"
     }
 
     override fun onCategoryClicked(name: String) {

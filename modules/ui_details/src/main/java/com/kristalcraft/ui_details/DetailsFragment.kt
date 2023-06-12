@@ -19,6 +19,7 @@ class DetailsFragment: Fragment() {
 
     private lateinit var binding: FragmentDetailesBinding
     private lateinit var detailsComponent: DetailsComponent
+    var dishId: Int? = null
 
     @Inject
     lateinit var viewModel: DetailsViewModel
@@ -37,11 +38,13 @@ class DetailsFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         arguments?.getInt(DISH_ID)?.let {
+            dishId = it
             viewModel.getDish(it)
         }
 
         binding.detailsClose.setOnClickListener { activity?.onBackPressed() }
         binding.detailsAdd.setOnClickListener {
+            dishId?.let { it1 -> viewModel.addToCart(it1) }
             Toast.makeText(context, "Добавлено в корзину", Toast.LENGTH_SHORT).show()
         }
 
@@ -79,12 +82,6 @@ class DetailsFragment: Fragment() {
             .appComponent(appComponent)
             .build()
         detailsComponent.inject(this)
-    }
-
-    private val categoryListener = { name: String ->
-        if (activity is CartClicked) {
-            (activity as CartClicked).onAddClicked(name)
-        }
     }
 
     companion object{

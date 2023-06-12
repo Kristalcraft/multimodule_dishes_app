@@ -5,8 +5,8 @@ import kotlinx.coroutines.flow.Flow
 
 interface DishesApiHelper {
 
-    suspend fun getDishes(tag: String): Flow<List<DishModel>>
+    fun getDishes(tag: String): Flow<List<DishModel>>
 
-    suspend fun getDish(id: Int): Flow<DishModel>
+    fun getDish(id: Int): Flow<DishModel>
 
 }

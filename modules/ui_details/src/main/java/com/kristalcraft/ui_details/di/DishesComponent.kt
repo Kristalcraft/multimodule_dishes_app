@@ -8,7 +8,7 @@ import javax.inject.Scope
 
 
 
-@Component( modules = [DishesApiModule::class])
+@Component( modules = [DishesApiModule::class, DishDBmodule::class])
 @DishesFeature
 interface DetailsComponent {
 

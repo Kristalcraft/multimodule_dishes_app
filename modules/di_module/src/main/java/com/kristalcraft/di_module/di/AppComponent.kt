@@ -1,6 +1,7 @@
 package com.kristalcraft.di_module.di
 
 import android.content.Context
+import com.kristalcraft.datasource_cart.DishDao
 import com.kristalcraft.di_module.BaseApp
 import dagger.BindsInstance
 import dagger.Component
@@ -9,7 +10,7 @@ import javax.inject.Scope
 
 
 @Main
-@Component(modules = [NetworkModule::class])
+@Component(modules = [NetworkModule::class, DatabaseModule::class])
 interface AppComponent{
 
     fun inject(app: BaseApp)
@@ -23,6 +24,7 @@ interface AppComponent{
     }
 
     fun provideRetrofit(): Retrofit
+    fun provideDishDao(): DishDao
 
 }
 @Scope

@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace 'com.example.ui_cart'
+    namespace 'com.kristalcraft.datasource_cart'
     compileSdk 33
 
     defaultConfig {
@@ -29,21 +29,10 @@ android {
     kotlinOptions {
         jvmTarget = '17'
     }
-    buildFeatures {
-        viewBinding true
-    }
 }
 
 dependencies {
-    implementation project(path: ':modules:resource_module')
-    implementation project(path: ':modules:datasource_dishes')
     implementation project(path: ':modules:delegate_adapter')
-    implementation project(path: ':modules:datasource_cart')
-    implementation project(path: ':modules:di_module')
-
-    //Dagger 2
-    implementation 'com.google.dagger:dagger:2.43.2'
-    kapt 'com.google.dagger:dagger-compiler:2.43.2'
 
     //room
     implementation "androidx.room:room-runtime:2.5.1"
@@ -54,13 +43,8 @@ dependencies {
 
     //Retrofit 2
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
 
-
-    //COIL
-    implementation("io.coil-kt:coil:2.4.0")
-
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'

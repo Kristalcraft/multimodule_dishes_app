@@ -12,11 +12,11 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/modules" />
+            <option value="$PROJECT_DIR$/modules/datasource_cart" />
             <option value="$PROJECT_DIR$/modules/datasource_categories" />
             <option value="$PROJECT_DIR$/modules/datasource_dishes" />
             <option value="$PROJECT_DIR$/modules/delegate_adapter" />
             <option value="$PROJECT_DIR$/modules/di_module" />
-            <option value="$PROJECT_DIR$/modules/dishes_datasourse" />
             <option value="$PROJECT_DIR$/modules/location_module" />
             <option value="$PROJECT_DIR$/modules/resource_module" />
             <option value="$PROJECT_DIR$/modules/ui_cart" />

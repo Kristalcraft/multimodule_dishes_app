@@ -10,7 +10,7 @@ import javax.inject.Inject
 class DishesApiHelperImpl @Inject constructor(val apiService: DishesApi):
     DishesApiHelper {
 
-    override suspend fun getDishes(tag: String): Flow<List<DishModel>> = flow {
+    override  fun getDishes(tag: String): Flow<List<DishModel>> = flow {
         val prefferedDishes = arrayListOf<DishModel>()
         apiService.getDishes().dishes.forEach {
             if (it.tags.contains(tag)){
@@ -21,7 +21,7 @@ class DishesApiHelperImpl @Inject constructor(val apiService: DishesApi):
 
     }
 
-    override suspend fun getDish(id: Int): Flow<DishModel> {
+    override  fun getDish(id: Int): Flow<DishModel> {
         TODO("Not yet implemented")
     }
 
