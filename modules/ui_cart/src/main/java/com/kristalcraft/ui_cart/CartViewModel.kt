@@ -23,6 +23,8 @@ class CartViewModel @Inject constructor (private val dishesApiHelper: DishesApiH
 
     private val _cart = MutableLiveData<List<CartModel>>()
     val cart :LiveData<List<CartModel>> = _cart
+    private val _sum = MutableLiveData<Int>()
+    val sum :LiveData<Int> = _sum
 
     init{
         getCart()
@@ -32,6 +34,11 @@ class CartViewModel @Inject constructor (private val dishesApiHelper: DishesApiH
         dishDao.getDishCart()
             ?.onEach {
                 _cart.value = it
+            }
+            ?.onEach {
+                _sum.value = it.sumOf { cart ->
+                    cart.price * cart.count
+                }
             }
             ?.catch {
                 it.message?.let { it1 -> Log.e("__DEBUG__", it1) }

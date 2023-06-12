@@ -56,6 +56,10 @@ class CartFragment: Fragment() {
             cartAdapter.submitList(list.toList())
         }
 
+        viewModel.sum.observe(viewLifecycleOwner){
+            binding.payButton.text = "Оплатить $it ₽"
+        }
+
         viewModel.getCart()
     }
 

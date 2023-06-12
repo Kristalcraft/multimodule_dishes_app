@@ -72,6 +72,7 @@
 
     <TextView
         style="@style/sf_pro_medium_headline_3.white"
+        android:id="@+id/pay_button"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
