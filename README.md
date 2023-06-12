@@ -34,3 +34,5 @@ components provide Viewmodel to feature fragments and dependencies to VM.
 delegate_adapter contains DelegateAdapter to use in feature modules
 
 resource_module contains drawables, strings etc to be used in other modules
+
+Application uses flow and coroutines for work with server api and DB, Dagger 2 for dependency injection. Architecture pattern is MVVM with CLEAN (partially).
