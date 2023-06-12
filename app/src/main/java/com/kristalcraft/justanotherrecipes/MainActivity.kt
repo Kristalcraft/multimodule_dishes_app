@@ -2,20 +2,33 @@ package com.kristalcraft.justanotherrecipes
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.os.Handler
+import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.navigation.NavigationBarView
 import com.kristalcraft.justanotherrecipes.databinding.ActivityMainBinding
+import com.kristalcraft.location_module.CityProvider
 import com.kristalcraft.ui_cart.CartFragment
 import com.kristalcraft.ui_categories.CategoriesFragment
 import com.kristalcraft.ui_categories.CategoryClicked
 import com.kristalcraft.ui_details.DetailsFragment
 import com.kristalcraft.ui_dishes.DishClicked
 import com.kristalcraft.ui_dishes.DishesFragment
+import java.text.DateFormat
 
 class MainActivity : AppCompatActivity(), CategoryClicked, DishClicked {
 
     private lateinit var binding: ActivityMainBinding
+
+    private lateinit var mainHandler: Handler
+    private val onCityFoundListener:(String) -> Unit = { it: String ->
+        mainHandler.post {
+            binding.topBar.location.text = it
+        }
+    }
+    private val getCityRegistration = CityProvider.registerPermsToGetCity(this, onCityFoundListener)
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,8 +37,10 @@ class MainActivity : AppCompatActivity(), CategoryClicked, DishClicked {
         val view = binding.root
         supportActionBar?.hide()
         setContentView(view)
+        mainHandler = Handler(mainLooper)
 
-
+        CityProvider.getCityIfGranted(this@MainActivity,onCityFoundListener)
+        setTopBar()
         setNavigation()
         openCategories()
     }
@@ -40,9 +55,10 @@ class MainActivity : AppCompatActivity(), CategoryClicked, DishClicked {
 
     @SuppressLint("CommitTransaction")
     private fun openCategories() {
-            supportFragmentManager.beginTransaction()
-                .replace(binding.fragmentContainer.id, CategoriesFragment(), CATEGORIES)
-                .commit()
+        setTopBar()
+        supportFragmentManager.beginTransaction()
+            .replace(binding.fragmentContainer.id, CategoriesFragment(), CATEGORIES)
+            .commit()
     }
 
     @SuppressLint("CommitTransaction")
@@ -70,6 +86,7 @@ class MainActivity : AppCompatActivity(), CategoryClicked, DishClicked {
 
     @SuppressLint("CommitTransaction")
     private fun openCart(){
+        setTopBar()
         supportFragmentManager.beginTransaction()
             .replace(binding.fragmentContainer.id, CartFragment(), CART)
             .addToBackStack(DETAILS)
@@ -91,6 +108,25 @@ class MainActivity : AppCompatActivity(), CategoryClicked, DishClicked {
         navigation.setOnItemSelectedListener(listener)
     }
 
+    private fun setTopBar(categoryName:String = "") {
+        binding.topBar.apply {
+            val shouldShowCategory = categoryName.isNotEmpty()
+            backButton.visibility = if (shouldShowCategory) View.VISIBLE else View.INVISIBLE
+            category.visibility = if (shouldShowCategory) View.VISIBLE else View.INVISIBLE
+            locationIcon.visibility = if (shouldShowCategory) View.INVISIBLE else View.VISIBLE
+            location.visibility = if (shouldShowCategory) View.INVISIBLE else View.VISIBLE
+            date.visibility = if (shouldShowCategory) View.INVISIBLE else View.VISIBLE
+            category.text = categoryName
+            backButton.setOnClickListener { openCategories() }
+            locationIcon.setOnClickListener { CityProvider.getCity(this@MainActivity,getCityRegistration,onCityFoundListener) }
+
+
+            val simpleDateFormat =  DateFormat.getDateInstance(DateFormat.LONG).format(System.currentTimeMillis())
+            date.text = simpleDateFormat
+        }
+
+    }
+
     companion object{
         const val CATEGORIES = "categories"
         const val DISHES = "dishes"
@@ -99,6 +135,7 @@ class MainActivity : AppCompatActivity(), CategoryClicked, DishClicked {
     }
 
     override fun onCategoryClicked(name: String) {
+        setTopBar(name)
         openDishes(name)
     }
 

@@ -52,8 +52,6 @@ class DishesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setCategory()
-
         binding.dishesRecycler.layoutManager =
             GridLayoutManager(this.context, 3,GridLayoutManager.VERTICAL, false)
         binding.dishesRecycler.adapter = dishesAdapter
@@ -83,12 +81,6 @@ class DishesFragment : Fragment() {
                 )
             }
             tagsAdapter.submitList(list.toList())
-        }
-    }
-
-    private fun setCategory() {
-        arguments.let {
-            binding.category.text = it?.getString(CATEGORY_NAME)
         }
     }
 

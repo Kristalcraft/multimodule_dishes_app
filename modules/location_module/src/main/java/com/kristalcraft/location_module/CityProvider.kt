@@ -61,6 +61,13 @@ object CityProvider {
 
     }
 
+    fun getCityIfGranted(context: FragmentActivity,
+                         onEndListener: (String) -> Unit){
+        LocationPermissionProvider.doIfPermissionsGrantedOnly(context) {
+            getCityWhenPermIsGranted(context, onEndListener)
+        }
+    }
+
     fun getCity(
         context: FragmentActivity,
         requestPermissionLauncher: ActivityResultLauncher<String>,

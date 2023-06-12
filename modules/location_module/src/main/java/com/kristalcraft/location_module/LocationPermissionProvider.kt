@@ -45,4 +45,12 @@ object LocationPermissionProvider {
             }
         }
     }
+
+    fun doIfPermissionsGrantedOnly(context: FragmentActivity,
+                                   onGranted: () -> Unit){
+        if (ContextCompat.checkSelfPermission(context.applicationContext, Manifest.permission.ACCESS_COARSE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED){
+            onGranted.invoke()
+        }
+    }
 }

@@ -6,54 +6,6 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".CategoriesFragment">
-    <View
-        android:id="@+id/top_box"
-        android:layout_width="match_parent"
-        android:layout_height="57dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <ImageView
-        android:id="@+id/location_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/categories_navigation_icon"
-        app:layout_constraintTop_toTopOf="@id/top_box"
-        app:layout_constraintStart_toStartOf="@id/top_box" />
-
-    <TextView
-        android:id="@+id/location"
-        style="@style/sf_pro_medium_headline_1"
-        app:layout_constraintStart_toEndOf="@id/location_icon"
-        app:layout_constraintTop_toTopOf="@id/top_box"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="8dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text = "Санкт-Петербург"/>
-
-    <TextView
-        android:id="@+id/date"
-        style="@style/sf_pro_display_subhead_1"
-        app:layout_constraintStart_toEndOf="@id/location_icon"
-        app:layout_constraintTop_toBottomOf="@id/location"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text = "12 Августа, 2023"/>
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/categories_account_photo"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="17dp"
-        app:layout_constraintEnd_toEndOf="@id/top_box"
-        app:layout_constraintTop_toTopOf="@id/top_box"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/categories_recycler"
@@ -61,7 +13,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintTop_toBottomOf="@id/top_box"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
