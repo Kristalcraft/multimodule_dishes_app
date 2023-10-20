@@ -36,3 +36,10 @@ delegate_adapter contains DelegateAdapter to use in feature modules
 resource_module contains drawables, strings etc to be used in other modules
 
 Application uses flow and coroutines for work with server api and DB, Dagger 2 for dependency injection. Architecture pattern is MVVM with CLEAN (partially).
+
+Unfortunately, for now mock server is unavailable, video of the app https://drive.google.com/file/d/1M3tUv1ny6JocAPArdLz1qc8y_8LY90xJ/view?usp=share_link
+
+<img src="https://github.com/Kristalcraft/multimodule_dishes_app/assets/62521232/76500517-0519-4e91-ab6c-19787adf0fc6" width="200" />
+<img src="https://github.com/Kristalcraft/multimodule_dishes_app/assets/62521232/92237969-cac8-4c79-8ba9-ec45b520dd3b" width="200" />
+<img src="https://github.com/Kristalcraft/multimodule_dishes_app/assets/62521232/ac8817d3-27eb-4ae8-a4e0-6c633c23db8f" width="200" />
+<img src="https://github.com/Kristalcraft/multimodule_dishes_app/assets/62521232/b1c5922f-b1a3-4e6c-81cb-f74b97baeb3d" width="200" />
